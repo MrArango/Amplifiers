@@ -6,7 +6,9 @@ namespace Amplifiers
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            AmplifierView AmpView = new AmplifierView();
+
+            AmpView.All_Amplifiers();
         }
     }
 }
