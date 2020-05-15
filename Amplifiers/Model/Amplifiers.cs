@@ -2,7 +2,7 @@
 {
     public class Amplifier
     {
-        public int ID { get; set; }
+        public int Id_Amplifier { get; set; }
 
         public string Name { get; set; }
 

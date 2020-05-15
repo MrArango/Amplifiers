@@ -9,15 +9,21 @@ namespace Amplifiers
         {
             AmplifierController AmpController = new AmplifierController();
 
-            IEnumerable<Amplifier> Amps = AmpController.Get_Amplifiers();
+            IEnumerable<Amplifier> Amps = AmpController.GET_Amplifiers();
 
             Columns_Amplifiers();
 
             foreach (Amplifier amp in Amps)
             {
-                Console.Write((amp.ID + 1).ToString() + "\t");
+                Console.Write((amp.Id_Amplifier).ToString() + "\t");
 
                 Console.Write(amp.Name + "\t");
+
+                Console.Write(amp.BassKnob + "\t");
+
+                Console.Write(amp.MidKnob + "\t");
+
+                Console.WriteLine(amp.TrebleKnob);
             }
         }
 
