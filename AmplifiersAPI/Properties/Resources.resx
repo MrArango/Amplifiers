@@ -118,6 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="strcon" xml:space="preserve">
-    <value>Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Proyectos\Amplifiers\Amplifiers\DB.mdf;Integrated Security=True</value>
+    <value>Server=localhost; Database=amplifiers; Uid=root;</value>
   </data>
 </root>

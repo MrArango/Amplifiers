@@ -61,7 +61,7 @@ namespace AmplifiersAPI.Properties {
         }
         
         /// <summary>
-        ///   Busca una cadena traducida similar a Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Proyectos\Amplifiers\Amplifiers\DB.mdf;Integrated Security=True.
+        ///   Busca una cadena traducida similar a Server=localhost; Database=amplifiers; Uid=root;.
         /// </summary>
         internal static string strcon {
             get {

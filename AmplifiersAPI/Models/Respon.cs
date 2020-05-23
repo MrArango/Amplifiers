@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace AmplifiersAPI.Controllers.Responses
+﻿namespace AmplifiersAPI.Models
 {
     public class Respon
     {
