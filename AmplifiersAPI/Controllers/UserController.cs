@@ -52,8 +52,8 @@ namespace AmplifiersAPI.Controllers
             }
         }
 
-        // GET: api/User/5
-        [HttpGet("{id}")]
+        // GET: api/User/Find
+        [HttpGet("Find")]
         public IActionResult Get(int id)
         {
             Respon res = new Respon();
@@ -124,7 +124,6 @@ namespace AmplifiersAPI.Controllers
             }
         }
 
-
         // POST: api/User
         [HttpPost]
         public IActionResult Post(string Username, string Pass)
@@ -168,9 +167,83 @@ namespace AmplifiersAPI.Controllers
                 res.Data = null;
                 res.Message = "Ya existe un usuario con ese nombre";
 
-                return Ok();
+                return Ok(res);
             }
         }
+
+        // DELETE: api/User
+        [HttpDelete]
+        public IActionResult Delete(int id)
+        {
+            Respon res = new Respon();
+            try
+            {
+                using (var db = new MySqlConnection(Properties.Resources.strcon))
+                {
+                    var result = db.Execute("Delete from users where Id_User =@id", new { id });
+
+                    if (result > 0)
+                    {
+                        res.Valid = true;
+                        res.Data = null;
+                        res.Message = "El usuario se ha eliminado con éxito";
+                    }
+                    else
+                    {
+                        res.Valid = false;
+                        res.Data = null;
+                        res.Message = "El usuario con ese ID ya fue eliminado o no existe";
+                    }
+                    return Ok(res);
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Valid = false;
+                res.Data = null;
+                res.Message = ex.Message;
+            }
+
+            return Ok(res);
+        }
+
+        // PUT: api/User
+        [HttpPut]
+        public IActionResult ChangePassword(int id, string Pass)
+        {
+            Respon res = new Respon();
+            try
+            {
+                using (var db = new MySqlConnection(Properties.Resources.strcon))
+                {
+                    var result = db.Execute("update users set Pass=@Pass where Id_User=@id", new { id, Pass });
+
+                    if (result > 0)
+                    {
+                        res.Valid = true;
+                        res.Data = null;
+                        res.Message = "El usuario ha cambiado de contraseña con éxito";
+                    }
+                    else
+                    {
+                        res.Valid = false;
+                        res.Data = null;
+                        res.Message = "El usuario no cambio de contraseña, ocurrio un error en la base de datos";
+                    }
+                    return Ok(res);
+                }
+            }
+            catch (Exception ex)
+            {
+                res.Valid = false;
+                res.Data = null;
+                res.Message = ex.Message;
+            }
+
+            return Ok(res);
+        }
+
+
 
         public Respon FindByUsername(string Username)
         {
@@ -180,7 +253,7 @@ namespace AmplifiersAPI.Controllers
             {
                 using (var db = new MySqlConnection(Properties.Resources.strcon))
                 {
-                    var result = db.Query<User>("select Username from users where Username = @Username)", new { Username });
+                    var result = db.Query<User>("select Username from users where Username = @Username", new { Username });
 
                     if (result.Count() > 0)
                     {
